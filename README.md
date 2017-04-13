@@ -7,3 +7,6 @@ Core JavaSctipt library for the all Onix JS components.
 © 2017 Nick Panteleeff
 
 [MIT License](/LICENSE)
+
+[npm-badge]: https://badge.fury.io/js/onix-core.svg
+[npm]: https://badge.fury.io/js/onix-core
