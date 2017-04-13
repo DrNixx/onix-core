@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "0.5.4",
+  "version": "0.5.6",
   "description": "Onix library core",
   "main": "built/index.js",
   "types": "built/index.d.ts",
@@ -13,6 +13,10 @@
     "onix",
     "library"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:DrNixx/onix-core.git"
+  },
   "author": "Nick Panteleeff",
   "license": "MIT",
   "dependencies": {
