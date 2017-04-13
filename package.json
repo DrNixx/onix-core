@@ -1,0 +1,25 @@
+{
+  "name": "onix-core",
+  "version": "0.5.4",
+  "description": "Onix library core",
+  "main": "built/index.js",
+  "types": "built/index.d.ts",
+  "scripts": {
+    "build": "tsc && webpack",
+    "publish": "tsc && webpack --config webpack.production.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "onix",
+    "library"
+  ],
+  "author": "Nick Panteleeff",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^7.0.12",
+    "source-map-loader": "^0.2.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3"
+  }
+}
