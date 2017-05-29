@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "0.6.4",
+  "version": "0.7.5",
   "description": "Onix library core",
   "main": "built/index.js",
   "types": "built/index.d.ts",
@@ -25,7 +25,7 @@
     "@types/node": "^7.0.12",
     "source-map-loader": "^0.2.1",
     "ts-loader": "^2.0.3",
-    "typescript": "^2.2.2",
+    "typescript": "^2.3.3",
     "webpack": "^2.3.3"
   }
 }
