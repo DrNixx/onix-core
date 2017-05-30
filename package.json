@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "0.7.6",
+  "version": "1.0.8",
   "description": "Onix library core",
   "main": "built/index.js",
   "types": "built/index.d.ts",
