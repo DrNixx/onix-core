@@ -1,15 +1,15 @@
-var wnd: Window = window;
-var FALSE = false;
+const wnd: Window = window;
+const FALSE = false;
 
 // some convenient shortcuts.
-var aps = Array.prototype.slice;
-var con: Console = wnd.console;
+const aps = Array.prototype.slice;
+const con: Console = wnd.console;
 
-var callback_func = null;
-var callback_force = FALSE;
+let callback_func = null;
+let callback_force = FALSE;
 
 // default logging level, none.
-var log_level = 9;
+let log_level = 1;
 if (process.env.NODE_ENV !== 'production') {
     log_level = 9;
 }
@@ -17,15 +17,15 @@ if (process.env.NODE_ENV !== 'production') {
 // logging methods, in "priority order". Not all console implementations
 // will utilize these, but they will be used in the callback passed to
 // setCallback.
-var log_methods = ["error", "warn", "info", "debug", "log"];
+const log_methods = ["error", "warn", "info", "debug", "log"];
 
 // pass these methods through to the console if they exist, otherwise just
 // fail gracefully. These methods are provided for convenience.
-var pass_methods: string[] =
+const pass_methods: string[] =
     "assert clear count dir dirxml exception group groupCollapsed groupEnd profile profileEnd table time timeEnd trace".split(" ");
 
 // logs are stored here so that they can be recalled as necessary.
-var logs = [];
+let logs = [];
 
 // determine if the level is visible given the current log_level.
 function is_level(level: number) {
@@ -43,7 +43,7 @@ function exec_callback(args: any) {
 
 export class LoggerClass {
     constructor() {
-        var idx = pass_methods.length;
+        let idx = pass_methods.length;
         while (--idx >= 0) {
             this.callPassThroughMethod(pass_methods[idx]);
         }
@@ -81,15 +81,15 @@ export class LoggerClass {
 
     private setLevelFunctions(idx: number, level: string) {
         this[level] = function () {
-            var args = aps.call(arguments);
-            var log_arr = [level].concat(args);
+            const args = aps.call(arguments);
+            const log_arr = [level].concat(args);
 
             logs.push(log_arr);
             exec_callback(log_arr);
 
             if (!con || !is_level(idx)) { return; }
 
-            var arg_norm = (args.length === 1) ? args[0] : args;
+            const arg_norm = (args.length === 1) ? args[0] : args;
 
             (<any>con).firebug ? con[level].apply(wnd, arg_norm)
                 : con[level] ? con[level](arg_norm)
