@@ -8,11 +8,7 @@ const con: Console = wnd.console;
 let callback_func = null;
 let callback_force = FALSE;
 
-// default logging level, none.
-let log_level = 1;
-if (process.env.NODE_ENV !== 'production') {
-    log_level = 9;
-}
+let log_level = 9;
 
 // logging methods, in "priority order". Not all console implementations
 // will utilize these, but they will be used in the callback passed to
