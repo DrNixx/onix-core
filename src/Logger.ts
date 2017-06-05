@@ -10,9 +10,6 @@ let callback_force = FALSE;
 
 // Set default level
 let log_level = 9;
-if (process.env.NODE_ENV === 'production') {
-    Logger.setLevel(1);
-}
 
 // logging methods, in "priority order". Not all console implementations
 // will utilize these, but they will be used in the callback passed to
@@ -120,3 +117,6 @@ export class LoggerClass {
 }
 
 export var Logger: LoggerClass = new LoggerClass();
+if (process.env.NODE_ENV === 'production') {
+    Logger.setLevel(1);
+}
