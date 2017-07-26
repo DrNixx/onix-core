@@ -14,63 +14,55 @@ export interface Strings {
 }
 
 const defaultLocale: Locales = 'ru-ru';
-let currentLocale: Locales = defaultLocale;
-let categories: Strings = {};
-
-const locale = (value: string) => {
-    if (value=="en" || value=="en-us" || value=="en-uk") {
-        currentLocale = 'en-us';
-    }
-
-    currentLocale = 'ru-ru';
-
-    return currentLocale;
-}
-
-const register = (category: string, strings: StringsCategory) => {    
-    if (!categories[category]) {
-        categories[category] = strings;
-    } else {
-        for (const lang in strings) {
-            if (!categories[category][lang]) {
-                categories[category][lang] = {};
-            }
-
-            const langCat = strings[lang];
-            for (const key in langCat) {
-                categories[category][lang][key] = langCat[key];
-            }
-        }
-    }
-}
-
-const t = (category: string, key: string) => {
-    let result = <string>categories[category][currentLocale][key];
-    if (!result) {
-        result = <string>categories[category][defaultLocale][key];
-    }
-
-    return result;
-}
-
-const ts = (category: string, key: string) => {
-    let result = <string[]>categories[category][currentLocale][key];
-    if (!result) {
-        result = <string[]>categories[category][defaultLocale][key];
-    }
-
-    return result;
-}
-
 
 export class Intl {
-    public static setLocale = locale;
+    private static currentLocale: Locales = defaultLocale;
+    private static categories: Strings = {};
 
-    public static t = t;
+    public static setLocale = (value: string) => {
+        if (value=="en" || value=="en-us" || value=="en-uk") {
+            Intl.currentLocale = 'en-us';
+        }
 
-    public static ts = ts;
+        Intl.currentLocale = 'ru-ru';
 
-    public static registerStrings = register;
+        return Intl.currentLocale;
+    };
+
+    public static t = (category: string, key: string) => {
+        let result = <string>Intl.categories[category][Intl.currentLocale][key];
+        if (!result) {
+            result = <string>Intl.categories[category][defaultLocale][key];
+        }
+
+        return result;
+    };
+
+    public static ts = (category: string, key: string) => {
+        let result = <string[]>Intl.categories[category][Intl.currentLocale][key];
+        if (!result) {
+            result = <string[]>Intl.categories[category][defaultLocale][key];
+        }
+
+        return result;
+    };
+
+    public static registerStrings = (category: string, strings: StringsCategory) => {    
+        if (!Intl.categories[category]) {
+            Intl.categories[category] = strings;
+        } else {
+            for (const lang in strings) {
+                if (!Intl.categories[category][lang]) {
+                    Intl.categories[category][lang] = {};
+                }
+
+                const langCat = strings[lang];
+                for (const key in langCat) {
+                    Intl.categories[category][lang][key] = langCat[key];
+                }
+            }
+        }
+    };
 }
 
 Intl.setLocale(window.navigator.language);
