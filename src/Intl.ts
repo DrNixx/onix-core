@@ -32,7 +32,14 @@ const register = (category: string, strings: StringsCategory) => {
         categories[category] = strings;
     } else {
         for (const lang in strings) {
-            categories[category][lang] = strings[lang];
+            if (!categories[category][lang]) {
+                categories[category][lang] = {};
+            }
+
+            const langCat = strings[lang];
+            for (const key in langCat) {
+                categories[category][lang][key] = langCat[key];
+            }
         }
     }
 }
