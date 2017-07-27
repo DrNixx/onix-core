@@ -1,3 +1,5 @@
+import * as warning from 'warning';
+
 declare type Locales = 'ru-ru' | 'en-us';
 declare type StringsCallback = (key: string) => string;
 
@@ -53,6 +55,10 @@ export class Intl {
             result = Intl.safeT(category, defaultLocale, key);
         }
 
+        warning(result !== null,
+            `Empty string for category ${category} and key ${key}.`
+        );
+
         return result;
     };
 
@@ -61,6 +67,10 @@ export class Intl {
         if (!result) {
             result = Intl.safeTS(category, defaultLocale, key);
         }
+
+        warning(result !== null,
+            `Empty string for category ${category} and key ${key}.`
+        );
 
         return result;
     };
