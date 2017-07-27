@@ -29,19 +29,37 @@ export class Intl {
         return Intl.currentLocale;
     };
 
+    private static safeT = (category: string, locale: string, key: string) => {
+        let result: string = null;
+        if (Intl.categories[category] && Intl.categories[category][locale]) {
+            result = <string>Intl.categories[category][locale][key];
+        }
+        
+        return result;
+    };
+
+    private static safeTS = (category: string, locale: string, key: string) => {
+        let result: string[] = null;
+        if (Intl.categories[category] && Intl.categories[category][locale]) {
+            result = <string[]>Intl.categories[category][locale][key];
+        }
+        
+        return result;
+    };
+
     public static t = (category: string, key: string) => {
-        let result = <string>Intl.categories[category][Intl.currentLocale][key];
+        let result = Intl.safeT(category, Intl.currentLocale, key);
         if (!result) {
-            result = <string>Intl.categories[category][defaultLocale][key];
+            result = Intl.safeT(category, defaultLocale, key);
         }
 
         return result;
     };
 
     public static ts = (category: string, key: string) => {
-        let result = <string[]>Intl.categories[category][Intl.currentLocale][key];
+        let result = Intl.safeTS(category, Intl.currentLocale, key);
         if (!result) {
-            result = <string[]>Intl.categories[category][defaultLocale][key];
+            result = Intl.safeTS(category, defaultLocale, key);
         }
 
         return result;
