@@ -13,4 +13,4 @@ export * from './events/index';
 export { Hashtable } from './Hashtable';
 export { Logger } from './Logger';
 export { Intl } from './Intl';
-import { IDisposable, ITyped } from './Types';
+import { IDisposable, ITyped, IError } from './Types';

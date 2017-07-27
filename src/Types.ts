@@ -8,3 +8,8 @@ export interface IDisposable {
 export interface ITyped {
     _type: string;
 }
+
+export interface IError {
+    type: string,
+    message?: string
+}
