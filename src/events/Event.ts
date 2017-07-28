@@ -89,13 +89,13 @@ export class Event implements IDisposable, ITyped, IEvent {
      * Executes all linked handlers.
      */
     public trigger(args: IEventArgs): void {
-        var handlers;
+        var handlers: IEventHandler[];
 
         if (this.hasBindings()) {
             handlers = this.handlers.slice(0);
 
             for (var i = 0; i < handlers.length; i++) {
-                handlers[i].Invoke(args);
+                handlers[i].invoke(args);
             }
         }
     }
