@@ -20,6 +20,7 @@ const defaultLocale: Locales = 'ru-ru';
 export class Intl {
     private static currentLocale: Locales = defaultLocale;
     private static categories: Strings = {};
+    private static intlInitialized = false;
 
     public static setLocale = (value: string) => {
         if (value=="en" || value=="en-us" || value=="en-uk") {
@@ -91,6 +92,34 @@ export class Intl {
             }
         }
     };
+
+    public static register = () => {
+        if (!Intl.intlInitialized) {
+            Intl.registerStrings('app', {
+                'ru-ru': {
+                    time_lessone: "менее 1",
+                    time_empty: "---",
+                    time_nolabel: ["", "", "", ""],
+                    time_days: ["дн.", "день", "дня", "дней"],
+                    time_hours: ["ч.", "час", "часа", "часов"],
+                    time_minutes: ["мин.", "минута", "минуты", "минут"],
+                    time_seconds: ["сек.", "секунда", "секунды", "секунд"]
+                },
+
+                'en-us': {
+                    time_lessone: "less 1",
+                    time_empty: "---",
+                    time_nolabel: ["", "", "", ""],
+                    time_days: ["d.", "day", "days", "days"],
+                    time_hours: ["h.", "hour", "hours", "hours"],
+                    time_minutes: ["m.", "minute", "minutes", "minutes"],
+                    time_seconds: ["sec.", "second", "seconds", "seconds"]
+                }
+            });
+
+            Intl.intlInitialized = true;
+        }
+    }
 }
 
 Intl.setLocale(window.navigator.language);

@@ -53,3 +53,5 @@ export const parseDate = (value) => {
 
     return value;
 }
+
+export { formatTimestamp } from './formatTimestamp';
