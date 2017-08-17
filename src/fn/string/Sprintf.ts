@@ -1,6 +1,7 @@
-import { pad } from './Pad';
+import toSafeInteger = require('lodash/toSafeInteger');
+import padStart = require('lodash/padStart');
+import padEnd = require('lodash/padEnd');
 import { justify } from './Justify';
-import { intVal } from '../number/IntVal';
 
 export type RadixType = 2 | 8 | 10 | 16;
 
@@ -9,7 +10,7 @@ const formatBaseX = (value: number, base: RadixType, prefixBaseX: boolean, leftJ
     // Note: casts negative numbers to positive ones
     const number = value >>> 0;
     const prefix = prefixBaseX && number && {'2': '0b', '8': '0', '10': '', '16': '0x'}[base] || '';
-    const result = prefix + pad(number.toString(base), precision || 0, '0', false);
+    const result = prefix + padStart(number.toString(base), precision || 0, '0');
     return justify(result, prefix, leftJustify, minWidth, zeroPad);
 }
 
@@ -85,9 +86,9 @@ export const sprintf = (format: string, ...a) => {	// Return a formatted string
 			case 'u': return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
 			case 'i':
 			case 'd': {
-						var number = intVal(+value);
+						var number = toSafeInteger(+value);
 						var prefix = number < 0 ? '-' : positivePrefix;
-						value = prefix + pad(String(Math.abs(number)), precision, '0', false);
+						value = prefix + padEnd(String(Math.abs(number)), precision, '0');
 						return justify(value, prefix, leftJustify, minWidth, zeroPad);
 					}
 			case 'e':

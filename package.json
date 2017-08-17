@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "1.1.27",
+  "version": "1.2.28",
   "description": "Onix library core",
   "main": "built/index.js",
   "types": "built/index.d.ts",
@@ -21,9 +21,11 @@
   "author": "Nick Panteleeff",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.4",
     "warning": "^3.0.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.73",
     "@types/node": "^7.0.39",
     "awesome-typescript-loader": "^3.2.2",
     "source-map-loader": "^0.2.1",

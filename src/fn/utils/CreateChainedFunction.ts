@@ -1,10 +1,10 @@
-import { isFunction } from '../Types';
+import isFunction = require('lodash/isFunction');
 
 export const createChainedFunction = (...funcs) => {
     return funcs
         .filter(f => (isFunction(f)))
         .reduce((acc, f) => {
-            if (typeof f !== 'function') {
+            if (!isFunction(f)) {
                 throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
             }
 

@@ -1,6 +1,4 @@
-export { intVal } from './IntVal';
-export { isValueOutOfRange } from './IsValueOutOfRange';
-export { ensureValueInRange } from './EnsureValueInRange';
+// use _.range export { isValueOutOfRange } from './IsValueOutOfRange';
+// use _.clamp export { ensureValueInRange } from './EnsureValueInRange';
 
-export { average } from './Average';
 export { stdDeviation } from './StdDeviation';
