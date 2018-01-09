@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "1.2.30",
+  "version": "1.2.31",
   "description": "Onix library core",
   "main": "built/index.js",
   "types": "built/index.d.ts",
@@ -25,11 +25,11 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.76",
-    "@types/node": "^7.0.43",
-    "awesome-typescript-loader": "^3.2.3",
-    "source-map-loader": "^0.2.1",
-    "typescript": "^2.5.3",
+    "@types/lodash": "^4.14.92",
+    "@types/node": "^7.0.52",
+    "awesome-typescript-loader": "^3.4.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2",
     "webpack": "^2.7.0"
   }
 }
