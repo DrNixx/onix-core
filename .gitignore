@@ -1,7 +1,4 @@
 node_modules
 dist
 .vscode
-/onix-core.js
-/onix-core.js.map
-
 npm-debug.log

@@ -1,12 +1,11 @@
 {
   "name": "onix-core",
-  "version": "1.3.35",
+  "version": "1.5.37",
   "description": "Onix library core",
-  "main": "dist/onix-core.js",
-  "types": "dist/typing/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -26,14 +25,6 @@
   "devDependencies": {
     "@types/lodash": "^4.14.110",
     "@types/node": "^7.0.66",
-    "clean-webpack-plugin": "^0.1.19",
-    "html-webpack-plugin": "^3.2.0",
-    "source-map-loader": "^0.2.3",
-    "ts-loader": "^4.4.2",
-    "typescript": "^2.9.2",
-    "webpack": "^4.14.0",
-    "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-merge": "^4.1.3"
+    "typescript": "^2.9.2"
   }
 }
