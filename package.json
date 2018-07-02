@@ -24,8 +24,8 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.104",
-    "@types/node": "^7.0.55",
+    "@types/lodash": "^4.14.110",
+    "@types/node": "^7.0.66",
     "clean-webpack-plugin": "^0.1.19",
     "html-webpack-plugin": "^3.2.0",
     "source-map-loader": "^0.2.3",
