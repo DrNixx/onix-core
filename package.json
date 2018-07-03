@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "1.6.38",
+  "version": "1.6.39",
   "description": "Onix library core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,7 @@
     "webpack": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "stats": "webpack --profile --json > stats.json",
+    "statsp": "webpack --profile --json --mode=production > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

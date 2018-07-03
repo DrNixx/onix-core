@@ -66,7 +66,7 @@ export const formatTimestamp = (timestamp) => {
 
     let timeval = Math.round(timestamp / 100);
     if (timeval < 0) timeval = 0;
-    var dday = Math.floor(timeval / 86400); timeval -= dday * 86400;
+    var dday = Math.floor(timeval / secondsInDay); timeval -= dday * secondsInDay;
     var dhour = Math.floor(timeval / 3600); timeval -= dhour * 3600;
     var dmin = Math.floor(timeval / 60); timeval -= dmin * 60;
     var dsec = timeval;
