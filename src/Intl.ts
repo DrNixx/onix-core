@@ -27,13 +27,13 @@ export class Intl {
             Intl.currentLocale = 'en-us';
         }
 
-        Intl.currentLocale = 'ru-ru';
+        Intl.currentLocale = defaultLocale;
 
         return Intl.currentLocale;
     };
 
     private static safeT = (category: string, locale: string, key: string) => {
-        let result: string = null;
+        let result: string = "";
         if (Intl.categories[category] && Intl.categories[category][locale]) {
             result = <string>Intl.categories[category][locale][key];
         }
@@ -42,7 +42,7 @@ export class Intl {
     };
 
     private static safeTS = (category: string, locale: string, key: string) => {
-        let result: string[] = null;
+        let result: string[] = [];
         if (Intl.categories[category] && Intl.categories[category][locale]) {
             result = <string[]>Intl.categories[category][locale][key];
         }

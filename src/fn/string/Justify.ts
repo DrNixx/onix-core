@@ -1,5 +1,5 @@
-import padStart = require('lodash/padStart');
-import padEnd = require('lodash/padEnd');
+import padEnd from 'lodash-es/padEnd';
+import padStart from 'lodash-es/padStart';
 
 export const justify = (value: string, prefix: string, leftJustify: boolean, minWidth: number, zeroPad: boolean) => {
     var diff = minWidth - value.length;

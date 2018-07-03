@@ -21,7 +21,7 @@ export class EventHandler1<T> extends EventHandler implements IEventHandler1<T> 
      * constructor
      */
     constructor(Callback: (args: IEventArgs1<T>) => void, Context: any) {
-        super(Callback, Context);
+        super(<any>Callback, Context);
     }
 
     /**

@@ -1,4 +1,4 @@
-import mean = require('lodash/mean');
+import mean from 'lodash-es/mean';
 
 export const stdDeviation = (arr: number[]) => {
     var avg = mean(arr), sum = 0;

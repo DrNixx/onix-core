@@ -1,6 +1,6 @@
 export const grep = (elems: any[], callback: Function, invert?: boolean) => {
-    var callbackInverse,
-        matches = [];
+    let callbackInverse: boolean;
+    let matches: any[] = [];
     let i = 0;
     const length = elems.length;
     const callbackExpect = !invert;
@@ -10,7 +10,7 @@ export const grep = (elems: any[], callback: Function, invert?: boolean) => {
     for ( ; i < length; i++ ) {
         callbackInverse = !callback(elems[ i ], i);
         if (callbackInverse !== callbackExpect) {
-            matches.push( elems[ i ] );
+            matches.push(elems[i]);
         }
     }
 

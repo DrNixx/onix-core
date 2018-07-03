@@ -10,11 +10,11 @@ export class Event implements IDisposable, ITyped, IEvent {
 
     private handlers: IEventHandler[];
 
-    public OnHandlerAttached: () => void = null;
+    public OnHandlerAttached: () => void = ()=> { };
 
     public OnHandlerAttachedContext: any = null;
 
-    public OnHandlerDettached: () => void = null;
+    public OnHandlerDettached: () => void = () => { };
     
     public OnHandlerDettachedContext: any = null;
 
