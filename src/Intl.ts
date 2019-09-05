@@ -123,3 +123,6 @@ export class Intl {
 }
 
 Intl.setLocale(window.navigator.language);
+
+export const _ = Intl.t;
+export const __ = Intl.ts;

@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "1.6.41",
+  "version": "1.6.42",
   "description": "Onix library core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,16 +23,16 @@
   "author": "Nick Panteleeff",
   "license": "MIT",
   "dependencies": {
-    "lodash-es": "^4.17.14",
+    "lodash-es": "^4.17.15",
     "warning": "^4.0.3"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.3",
-    "@types/node": "^7.10.6",
+    "@types/node": "^7.10.7",
     "clean-webpack-plugin": "^0.1.19",
     "ts-loader": "^4.5.0",
     "typescript": "^2.9.2",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   }
 }
