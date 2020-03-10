@@ -1,3 +1,3 @@
-export { formatTimestamp } from './FormatTimestamp';
+export { formatTimestamp } from './formatTimestamp';
 export { parseMicrosoftFormatOffset } from './ParseMicrosoftFormatOffset';
 export { dateToUTCString } from './DateToUTCString';
