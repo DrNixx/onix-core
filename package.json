@@ -1,6 +1,6 @@
 {
   "name": "onix-core",
-  "version": "1.6.44",
+  "version": "1.6.45",
   "description": "Onix library core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
