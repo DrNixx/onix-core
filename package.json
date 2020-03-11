@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "stats": "webpack --profile --json > stats.json",
     "statsp": "webpack --profile --json --mode=production > stats.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive --require esm --require ./test/helpers.js"
   },
   "keywords": [
     "onix",
@@ -29,7 +29,10 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.3",
     "@types/node": "^7.10.9",
+    "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
+    "esm": "^3.2.25",
+    "mocha": "^7.1.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "webpack": "^4.42.0",
