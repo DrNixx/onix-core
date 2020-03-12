@@ -1,4 +1,4 @@
-import * as warning from 'warning';
+import warning from 'warning';
 
 declare type Locales = 'ru-ru' | 'en-us';
 declare type StringsCallback = (key: string) => string;
@@ -25,9 +25,9 @@ export class Intl {
     public static setLocale = (value: string) => {
         if (value=="en" || value=="en-us" || value=="en-uk") {
             Intl.currentLocale = 'en-us';
+        } else {
+            Intl.currentLocale = defaultLocale;
         }
-
-        Intl.currentLocale = defaultLocale;
 
         return Intl.currentLocale;
     };
@@ -122,7 +122,9 @@ export class Intl {
     }
 }
 
-Intl.setLocale(window.navigator.language);
+if ((window !== undefined) && (window['navigator'])) {
+    Intl.setLocale(window.navigator.language);
+}
 
 export const _ = Intl.t;
 export const __ = Intl.ts;

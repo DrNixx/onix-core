@@ -9,6 +9,7 @@
         "sourceMap": true,
         "declaration": true,
         // "strict": true,
+        "allowSyntheticDefaultImports": true,
         "importHelpers": true,
         "preserveConstEnums": true,
         "removeComments": false,
