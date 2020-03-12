@@ -1,6 +1,6 @@
 import isFunction from 'lodash-es/isFunction';
 
-export const createChainedFunction = (...funcs) => {
+export const createChainedFunction = (...funcs: any[]) => {
     return funcs
         .filter(f => (isFunction(f)))
         .reduce((acc, f) => {
@@ -12,7 +12,7 @@ export const createChainedFunction = (...funcs) => {
                 return f;
             }
 
-            return function chainedFunction(...args) {
+            return function chainedFunction(this: any, ...args: any[]) {
                 acc.apply(this, args);
                 f.apply(this, args);
             };

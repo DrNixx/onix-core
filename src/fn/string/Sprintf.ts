@@ -23,7 +23,7 @@ const formatString = (value: string, leftJustify: boolean, minWidth: number, pre
     return justify(value, '', leftJustify, minWidth, zeroPad);
 }
 
-export const sprintf = (format: string, ...a) => {	// Return a formatted string
+export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted string
 	const regex = /%%|%(\d+\$)?([-+#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
 	let i = 0;
 

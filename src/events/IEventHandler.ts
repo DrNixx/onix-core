@@ -7,5 +7,5 @@ export interface IEventHandler {
 }
 
 export interface IEventHandler1<T> extends IEventHandler {
-    invoke(args: IEventArgs1<T>);
+    invoke(args: IEventArgs1<T>): void;
 }

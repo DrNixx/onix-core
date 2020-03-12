@@ -1,4 +1,4 @@
-import warning from 'warning';
+import * as warning from 'warning';
 
 declare type Locales = 'ru-ru' | 'en-us';
 declare type StringsCallback = (key: string) => string;

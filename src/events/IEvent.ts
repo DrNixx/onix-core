@@ -11,8 +11,8 @@ export interface IEvent {
     bindFor(handler: IEventHandler, triggerCount: number): void;
     unbind(handler: IEventHandler): void;
     hasBindings(handler: IEventHandler): boolean;
-    trigger(args: IEventArgs);
-    fire(sender: any, data?: any);
+    trigger(args: IEventArgs): void;
+    fire(sender: any, data?: any): void;
 }
 
 export interface IEvent1<T> extends IEvent {
@@ -20,6 +20,6 @@ export interface IEvent1<T> extends IEvent {
     bindFor(handler: IEventHandler1<T>, triggerCount: number): void;
     unbind(handler: IEventHandler1<T>): void;
     hasBindings(handler: IEventHandler1<T>): boolean;
-    trigger(args: IEventArgs1<T>);
-    fire(sender: any, data: T);
+    trigger(args: IEventArgs1<T>): void;
+    fire(sender: any, data: T): void;
 }
