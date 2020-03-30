@@ -1,6 +1,7 @@
 "use strict";
 
 import { formatTimer } from "../../../dist/fn/date/formatTimer";
+import { Intl } from "../../../dist/Intl";
 
 describe('fn/date/formatTimer', function() {
     describe('#formatTimer()', function() {
@@ -9,6 +10,8 @@ describe('fn/date/formatTimer', function() {
             const min = 60 * sec;
             const hour = 60 * min;
             const day = 24 * hour;
+
+            Intl.setLocale("ru-ru");
             
             let res = formatTimer(5 * day + 2 * min);
             expect(res).to.equal("5 дн.");
