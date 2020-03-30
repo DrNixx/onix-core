@@ -1,6 +1,9 @@
+import { IntlMessageFormat } from 'intl-messageformat';
 import * as warning from 'warning';
+import * as enTranslation from './i18n/en-us.json';
+import * as ruTranslation from './i18n/ru-ru.json';
 
-declare type Locales = 'ru-ru' | 'en-us';
+declare type Locales = "ru-ru" | "en-us";
 declare type StringsCallback = (key: string) => string;
 
 export interface StringsMap {
@@ -8,23 +11,23 @@ export interface StringsMap {
 }
 
 export interface StringsCategory {
-    [lang: string]: StringsMap;
+    [module: string]: StringsMap;
 }
 
 export interface Strings {
-    [module: string]: StringsCategory;
+    [lang: string]: StringsCategory;
 }
 
-const defaultLocale: Locales = 'ru-ru';
+const defaultLocale: Locales = "ru-ru";
 
 export class Intl {
     private static currentLocale: Locales = defaultLocale;
-    private static categories: Strings = {};
+    private static strings: Strings = {};
     private static intlInitialized = false;
 
     public static setLocale = (value: string) => {
         if (value=="en" || value=="en-us" || value=="en-uk") {
-            Intl.currentLocale = 'en-us';
+            Intl.currentLocale = "en-us";
         } else {
             Intl.currentLocale = defaultLocale;
         }
@@ -33,9 +36,9 @@ export class Intl {
     };
 
     private static safeT = (category: string, locale: string, key: string) => {
-        let result: string = "";
-        if (Intl.categories[category] && Intl.categories[category][locale]) {
-            result = <string>Intl.categories[category][locale][key];
+        let result: string = key;
+        if (Intl.strings[locale] && Intl.strings[locale][category]) {
+            result = <string>Intl.strings[locale][category][key];
         }
         
         return result;
@@ -43,24 +46,37 @@ export class Intl {
 
     private static safeTS = (category: string, locale: string, key: string) => {
         let result: string[] = [];
-        if (Intl.categories[category] && Intl.categories[category][locale]) {
-            result = <string[]>Intl.categories[category][locale][key];
+        if (Intl.strings[locale] && Intl.strings[locale][category]) {
+            result = <string[]>Intl.strings[locale][category][key];
         }
         
         return result;
     };
 
-    public static t = (category: string, key: string) => {
-        let result = Intl.safeT(category, Intl.currentLocale, key);
-        if (!result) {
-            result = Intl.safeT(category, defaultLocale, key);
+    public static t = (category: string, key: string, args?: any): string => {
+        if (!Intl.intlInitialized) {
+            Intl.register();
         }
 
-        warning(result !== null,
+        let message = Intl.safeT(category, Intl.currentLocale, key);
+        if (!message) {
+            message = Intl.safeT(category, defaultLocale, key);
+        }
+
+        warning(message !== key,
             `Empty string for category ${category} and key ${key}.`
         );
 
-        return result;
+        const formatter = new IntlMessageFormat(message, Intl.currentLocale);
+        const result = formatter.format(args);
+        if (result) {
+            if (typeof result === "string") {
+                return result;
+            } else {
+                return result.join(" ");
+            }
+        }
+        return message;
     };
 
     public static ts = (category: string, key: string) => {
@@ -76,55 +92,42 @@ export class Intl {
         return result;
     };
 
-    public static registerStrings = (category: string, strings: StringsCategory) => {    
-        if (!Intl.categories[category]) {
-            Intl.categories[category] = strings;
-        } else {
-            for (const lang in strings) {
-                if (!Intl.categories[category][lang]) {
-                    Intl.categories[category][lang] = {};
-                }
+    private static registerStrings = (lang: string, category: string, strings: StringsMap) => {
+        if (Intl.strings[lang] === undefined) {
+            Intl.strings[lang] = {};
+        }
 
-                const langCat = strings[lang];
-                for (const key in langCat) {
-                    Intl.categories[category][lang][key] = langCat[key];
-                }
-            }
+        if (Intl.strings[lang][category] === undefined) {
+            Intl.strings[lang][category] = {};
+        }
+
+        for (const key in strings) {
+            Intl.strings[lang][category][key] = strings[key];
         }
     };
 
-    public static register = () => {
-        if (!Intl.intlInitialized) {
-            Intl.registerStrings('app', {
-                'ru-ru': {
-                    time_lessone: "менее 1",
-                    time_empty: "---",
-                    time_nolabel: ["", "", "", ""],
-                    time_days: ["дн.", "день", "дня", "дней"],
-                    time_hours: ["ч.", "час", "часа", "часов"],
-                    time_minutes: ["мин.", "минута", "минуты", "минут"],
-                    time_seconds: ["сек.", "секунда", "секунды", "секунд"]
-                },
+    private static registerCategories = (lang: string, strings: StringsCategory) => {
+        for (const category in strings) {
+            Intl.registerStrings(lang, category, strings[category]);    
+        }    
+    }
 
-                'en-us': {
-                    time_lessone: "less 1",
-                    time_empty: "---",
-                    time_nolabel: ["", "", "", ""],
-                    time_days: ["d.", "day", "days", "days"],
-                    time_hours: ["h.", "hour", "hours", "hours"],
-                    time_minutes: ["m.", "minute", "minutes", "minutes"],
-                    time_seconds: ["sec.", "second", "seconds", "seconds"]
-                }
-            });
+    public static register = (i18n?: StringsCategory) => {
+        if (!Intl.intlInitialized) {
+            Intl.registerCategories("en-us", enTranslation);
+            Intl.registerCategories("ru-ru", ruTranslation);
 
             Intl.intlInitialized = true;
+        }
+
+        if (i18n !== undefined) {
+            Intl.registerCategories(Intl.currentLocale, i18n);
         }
     }
 }
 
-if ((window !== undefined) && (window['navigator'])) {
+if ((window !== undefined) && (window["navigator"])) {
     Intl.setLocale(window.navigator.language);
 }
 
 export const _ = Intl.t;
-export const __ = Intl.ts;

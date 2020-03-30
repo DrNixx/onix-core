@@ -26,11 +26,17 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                type: 'javascript/auto',
+                test: /\.json$/,
+                loader: 'json-loader',
+            },
         ]
     },
 
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+        modules: ['node_modules']
     }
 };
