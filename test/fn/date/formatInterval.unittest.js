@@ -8,10 +8,10 @@ describe('fn/date/formatInterval', function() {
         it('test format DateInterval', function() {
             let i = {
                 y: 1,
-                m: 2,
+                m: 5,
                 d: 3,
                 h: 4,
-                i: 5,
+                i: 22,
                 s: 6,
                 f: 0,
                 invert: false,
@@ -21,10 +21,10 @@ describe('fn/date/formatInterval', function() {
             Intl.setLocale("ru-ru");
 
             let res = formatInterval(i);
-            expect(res).to.equal("1 год 2 месяца 3 дня 4 часа 5 минут 6 секунд");
+            expect(res).to.equal("1 год 5 месяцев 3 дня 4 часа 22 минуты 6 секунд");
 
             res = formatInterval(i, 2);
-            expect(res).to.equal("1 год 2 месяца");
+            expect(res).to.equal("1 год 5 месяцев");
         });
     });
 });

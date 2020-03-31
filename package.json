@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "stats": "webpack --profile --json > stats.json",
     "statsp": "webpack --profile --json --mode=production > stats.json",
-    "test": "mocha --recursive --require @babel/register --require ./test/helpers.js"
+    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu mocha --recursive --require @babel/register --require ./test/helpers.js"
   },
   "keywords": [
     "onix",
@@ -36,6 +36,8 @@
     "@types/warning": "^3.0.0",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "full-icu": "^1.3.1",
     "mocha": "^7.1.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
