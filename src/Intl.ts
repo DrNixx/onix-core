@@ -18,9 +18,17 @@ export interface Strings {
 const defaultLocale = "en-us";
 let initialized = false;
 
-export class IntlManager {
+class IntlManager {
     private currentLocale: string = defaultLocale;
     private strings: Strings = {};
+
+    public constructor() {
+        if ((window !== undefined) && (window["navigator"])) {
+            this.setLocale(window.navigator.language);
+        }
+
+        this.register();
+    }
 
     public setLocale = (value: string) => {
         const msg = new IntlMessageFormat('', value);
@@ -80,7 +88,7 @@ export class IntlManager {
         }
     };
 
-    protected registerCategories = (lang: string, strings: StringsCategory) => {
+    private registerCategories = (lang: string, strings: StringsCategory) => {
         for (const category in strings) {
             this.registerStrings(lang, category, strings[category]);    
         }    
@@ -102,9 +110,3 @@ export class IntlManager {
 
 export const Intl = new IntlManager(); 
 export const _ = Intl.t;
-
-if ((window !== undefined) && (window["navigator"])) {
-    Intl.setLocale(window.navigator.language);
-}
-
-Intl.register();
