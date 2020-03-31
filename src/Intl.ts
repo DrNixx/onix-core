@@ -88,7 +88,7 @@ class IntlManager {
         }
     };
 
-    private registerCategories = (lang: string, strings: StringsCategory) => {
+    public registerCategories = (lang: string, strings: StringsCategory) => {
         for (const category in strings) {
             this.registerStrings(lang, category, strings[category]);    
         }    
