@@ -50,7 +50,7 @@ export const formatInterval = (interval: DateInterval, parts: number = 0): strin
         values = [];
         while ((values.length < parts) && (format.length > 0)) {
             
-            values.push(format.shift());
+            values.push(format.shift()!);
         }
     } else {
         values = format;

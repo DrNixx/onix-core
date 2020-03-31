@@ -1,5 +1,5 @@
-const valueToTwoDigits = function (value) {
-    return ((value < 10) ? '0' : '') + value;
+const valueToTwoDigits = function (value: number) {
+    return ((value < 10) ? '0' : '') + value.toString();
 };
 
 // ===================== Date ========================

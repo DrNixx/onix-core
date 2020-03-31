@@ -31,14 +31,20 @@ class IntlManager {
     }
 
     public setLocale = (value: string) => {
-        const msg = new IntlMessageFormat('', value);
-        const locale = msg.resolvedOptions().locale;
-        if (locale) {
-            this.currentLocale = locale.toLowerCase();
-        } else {
-            this.currentLocale = defaultLocale;
+        if (value) {
+            if (value.length === 2) {
+                value = value + "-" + value;
+            }
+            
+            const msg = new IntlMessageFormat('', value);
+            const locale = msg.resolvedOptions().locale;
+            if (locale) {
+                this.currentLocale = locale.toLowerCase();
+            } else {
+                this.currentLocale = defaultLocale;
+            }
         }
-
+        
         
         return this.currentLocale;
     };

@@ -51,33 +51,33 @@ export class LoggerClass {
         }
     }
 
-    public error(message?: any, ...args: any[]) {
+    public error = (message?: any, ...args: any[]) => {
     }
 
-    public warn(message?: any, ...args: any[]) {
+    public warn = (message?: any, ...args: any[]) => {
     }
 
-    public info(message?: any, ...args: any[]) {
+    public info = (message?: any, ...args: any[]) => {
     }
 
-    public debug(message?: any, ...args: any[]) {
+    public debug = (message?: any, ...args: any[]) => {
     }
 
-    public log(message?: any, ...args: any[]) {
+    public log = (message?: any, ...args: any[]) => {
     }
 
     private callPassThroughMethod(method: string) {
         // generate pass-through methods. These methods will be called, if they
         // exist, as long as the logging level is non-zero.
-        this[method] = function () {
-            if (log_level !== 0 && con && con[method]) {
-                con[method].apply(con, arguments);
+        (this as { [key: string]: any })[method] = function () {
+            if (log_level !== 0 && con && (con as { [key: string]: any })[method]) {
+                (con as { [key: string]: any })[method].apply(con, arguments);
             }
         };
     }
 
     private setLevelFunctions(idx: number, level: string) {
-        this[level] = function () {
+        (this as { [key: string]: any })[level] = function () {
             const args = aps.call(arguments);
             const log_arr = [level].concat(args);
 
@@ -88,8 +88,8 @@ export class LoggerClass {
 
             const arg_norm = (args.length === 1) ? args[0] : args;
 
-            (<any>con).firebug ? con[level].apply(wnd, arg_norm)
-                : con[level] ? con[level](arg_norm)
+            (<any>con).firebug ? (con as { [key: string]: any })[level].apply(wnd, arg_norm)
+                : (con as { [key: string]: any })[level] ? (con as { [key: string]: any })[level](arg_norm)
                     : con.log(arg_norm);
         };
     }

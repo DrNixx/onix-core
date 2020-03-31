@@ -12,7 +12,8 @@ export interface DateInterval {
     days: number | boolean,
 }
 
-function date_range_limit(start: number, end: number, adj: number, a: string, b: string, result: DateInterval): DateInterval {
+function date_range_limit(start: number, end: number, adj: number, a: string, b: string, interval: DateInterval): DateInterval {
+    const result = (interval as { [key: string]: any });
     if (result[a] < start) {
         result[b] -= toSafeInteger((start - result[a] - 1) / adj) + 1;
         result[a] += adj * toSafeInteger((start - result[a] - 1) / adj + 1);
@@ -23,7 +24,7 @@ function date_range_limit(start: number, end: number, adj: number, a: string, b:
         result[a] -= adj * toSafeInteger(result[a] / adj);
     }
 
-    return result;
+    return result as DateInterval;
 }
 
 function date_range_limit_days(base: Date, result: DateInterval)

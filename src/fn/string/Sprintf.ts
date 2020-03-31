@@ -28,7 +28,7 @@ export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted 
 	let i = 0;
 
 	// finalFormat()
-	var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
+	var doFormat = function(substring: string, valueIndex: number, flags: string, minWidth: number | string, _: any, precision?: number | string, type?: string) {
 		if (substring == '%%') return '%';
 
 		// parse flags
@@ -45,10 +45,12 @@ export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted 
 		// we want to ignore null, undefined and empty-string values
 		if (!minWidth) {
 			minWidth = 0;
-		} else if (minWidth == '*') {
-			minWidth = +a[i++];
-		} else if (minWidth.charAt(0) == '*') {
-			minWidth = +a[minWidth.slice(1, -1)];
+		} else if (typeof minWidth === "string") {
+			if (minWidth === '*') {
+				minWidth = +a[i++];
+			} else if (minWidth.charAt(0) == '*') {
+				minWidth = +a[toSafeInteger(minWidth.slice(1, -1))];
+			}
 		} else {
 			minWidth = +minWidth;
 		}
@@ -59,22 +61,30 @@ export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted 
 			leftJustify = true;
 		}
 
+		minWidth = toSafeInteger(minWidth);
+
 		if (!isFinite(minWidth)) {
 			throw new Error('sprintf: (minimum-)width must be finite');
 		}
 
+
+
 		if (!precision) {
-			precision = 'fFeE'.indexOf(type) > -1 ? 6 : (type == 'd') ? 0 : void(0);
-		} else if (precision == '*') {
-			precision = +a[i++];
-		} else if (precision.charAt(0) == '*') {
-			precision = +a[precision.slice(1, -1)];
+			precision = 'fFeE'.indexOf(<string>type) > -1 ? 6 : (type == 'd') ? 0 : void(0);
+		} else if (typeof precision === "string") {
+			if (precision == '*') {
+				precision = +a[i++];
+			} else if (precision.charAt(0) == '*') {
+				precision = +a[toSafeInteger(precision.slice(1, -1))];
+			}
 		} else {
 			precision = +precision;
 		}
 
+		precision = toSafeInteger(precision);
+
 		// grab value using valueIndex if required?
-		var value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
+		var value = valueIndex ? a[toSafeInteger(valueIndex.toString().slice(0, -1))] : a[i++];
 
 		switch (type) {
 			case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad);
@@ -98,12 +108,14 @@ export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted 
 			case 'g':
 			case 'G':
 						{
-						var number = +value;
-						var prefix = number < 0 ? '-' : positivePrefix;
-						var method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
-						var textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
-						value = prefix + Math.abs(number)[method](precision);
-						return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
+						const number = +value;
+						const prefix = number < 0 ? '-' : positivePrefix;
+						const method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
+						const textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
+						const abs: any = Math.abs(number);
+						value = prefix + abs[method](precision);
+						const just: any = justify(value, prefix, leftJustify, minWidth, zeroPad);
+						return just[textTransform]();
 					}
 			default: return substring;
 		}

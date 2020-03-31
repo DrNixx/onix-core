@@ -12,8 +12,16 @@ describe('Intl', function() {
 
         it('test function with change locale', function() {
             Intl.setLocale('en-us');
-            const s = _("timer", "lessone");
+            let s = _("timer", "lessone");
             expect(s).to.equal("less 1");
+
+            Intl.setLocale('ru-ru');
+            s = _("timer", "lessone");
+            expect(s).to.equal("менее 1");
+
+            Intl.setLocale('ru');
+            s = _("timer", "lessone");
+            expect(s).to.equal("менее 1");
         });
 
         it('test function with nonexistent locale', function() {
