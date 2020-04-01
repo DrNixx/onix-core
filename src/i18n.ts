@@ -3,24 +3,12 @@ import * as warning from 'warning';
 import * as enTranslation from './i18n/en-us.json';
 import * as ruTranslation from './i18n/ru-ru.json';
 
-export interface StringsMap {
-    [key: string]: string | string[];
-}
-
-export interface StringsCategory {
-    [module: string]: StringsMap;
-}
-
-export interface Strings {
-    [lang: string]: StringsCategory;
-}
-
 const defaultLocale = "en-us";
 let initialized = false;
 
 class IntlManager {
     private currentLocale: string = defaultLocale;
-    private strings: Strings = {};
+    private strings: i18n.Strings = {};
 
     public constructor() {
         if ((window !== undefined) && (window["navigator"])) {
@@ -80,7 +68,7 @@ class IntlManager {
         return message;
     };
 
-    private registerStrings = (lang: string, category: string, strings: StringsMap) => {
+    private registerStrings = (lang: string, category: string, strings: i18n.StringsMap) => {
         if (this.strings[lang] === undefined) {
             this.strings[lang] = {};
         }
@@ -94,13 +82,13 @@ class IntlManager {
         }
     };
 
-    public registerCategories = (lang: string, strings: StringsCategory) => {
+    public registerCategories = (lang: string, strings: i18n.StringsCategory) => {
         for (const category in strings) {
             this.registerStrings(lang, category, strings[category]);    
         }    
     }
 
-    public register = (i18n?: StringsCategory) => {
+    public register = (i18n?: i18n.StringsCategory) => {
         if (!initialized) {
             this.registerCategories("en-us", enTranslation);
             this.registerCategories("ru-ru", ruTranslation);
@@ -114,5 +102,25 @@ class IntlManager {
     }
 }
 
-export const Intl = new IntlManager(); 
-export const _ = Intl.t;
+const manager = new IntlManager(); 
+export const _ = manager.t;
+
+export namespace i18n {
+    export interface StringsMap {
+        [key: string]: string | string[];
+    }
+    
+    export interface StringsCategory {
+        [module: string]: StringsMap;
+    }
+    
+    export interface Strings {
+        [lang: string]: StringsCategory;
+    }
+
+    
+    export const setLocale = manager.setLocale;
+    export const register = manager.register;
+    export const registerCategories = manager.registerCategories;
+}
+

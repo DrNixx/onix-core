@@ -1,4 +1,4 @@
-import { _ } from '../../Intl';
+import { _ } from '../../i18n';
 import { DateInterval, normalize } from './DateInterval';
 
 export const formatInterval = (interval: DateInterval, parts: number = 0): string => {

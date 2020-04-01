@@ -11,5 +11,5 @@ export * from './events/index';
 
 export { Hashtable } from './Hashtable';
 export { Logger } from './Logger';
-export { _, Intl, StringsMap, StringsCategory, Strings } from './Intl';
+export { _, i18n } from './i18n';
 export { IDisposable, ITyped, IError } from './Types';

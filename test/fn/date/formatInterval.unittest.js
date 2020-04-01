@@ -1,7 +1,7 @@
 "use strict";
 
 import { formatInterval } from "../../../dist/fn/date/formatInterval";
-import { Intl } from "../../../dist/Intl";
+import { i18n } from "../../../dist/i18n";
 
 describe('fn/date/formatInterval', function() {
     describe('#formatInterval()', function() {
@@ -18,7 +18,7 @@ describe('fn/date/formatInterval', function() {
                 days: false
             };
 
-            Intl.setLocale("ru-ru");
+            i18n.setLocale("ru-ru");
 
             let res = formatInterval(i);
             expect(res).to.equal("1 год 5 месяцев 3 дня 4 часа 22 минуты 6 секунд");

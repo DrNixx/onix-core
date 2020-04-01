@@ -1,5 +1,5 @@
 import padStart from 'lodash-es/padStart';
-import { _ } from '../../Intl';
+import { _ } from '../../i18n';
 import { timestampToInterval  } from './timestampToInterval';
 
 export const formatTimer = (timestamp: number, short = true): string => {
