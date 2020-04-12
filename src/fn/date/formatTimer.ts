@@ -2,7 +2,7 @@ import padStart from 'lodash-es/padStart';
 import { _ } from '../../i18n';
 import { timestampToInterval  } from './timestampToInterval';
 
-export const formatTimer = (timestamp: number, short = true): string => {
+export const formatTimer = (timestamp: number, short = true, isend?: string): string => {
     if (isNaN(timestamp)) {
         return _("timer", "empty");
     }
@@ -13,7 +13,7 @@ export const formatTimer = (timestamp: number, short = true): string => {
     const result: string[] = [];
     if (interval.invert || ((interval.d === 0) && (interval.h === 0) && (interval.i === 0) && (interval.s === 0) && (interval.f === 0))) {
         result.push(
-            _("timer", "isend")
+            isend ?? _("timer", "isend")
         );
     } else {
         if (interval.d > 0) {
