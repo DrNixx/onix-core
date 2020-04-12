@@ -40,9 +40,16 @@ export const formatTimer = (timestamp: number, short = true, isend?: string): st
                     padStart(interval.s.toString(), 2, "0") + f
                 );
             } else {
-                result.push(
-                    padStart(interval.s.toString(), 2, "0") + f
-                );
+                if (f.length > 0) {
+                    result.push(
+                        padStart(interval.s.toString(), 2, "0") + f
+                    );
+                } else {
+                    result.push(
+                        padStart(interval.i.toString(), 2, "0") + ":" + 
+                        padStart(interval.s.toString(), 2, "0") + f
+                    );
+                }
             }
         }
     }
