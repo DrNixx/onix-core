@@ -4,7 +4,7 @@ import { timestampToInterval  } from './timestampToInterval';
 
 export const formatTimer = (timestamp: number, short = true): string => {
     if (isNaN(timestamp)) {
-        return _("timer", "time_empty");
+        return _("timer", "empty");
     }
 
     const category = short ? "timer" : "datetime";

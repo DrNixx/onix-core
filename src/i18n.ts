@@ -39,7 +39,7 @@ class IntlManager {
 
     private safeT = (category: string, locale: string, key: string) => {
         let result: string = key;
-        if (this.strings[locale] && this.strings[locale][category]) {
+        if (this.strings[locale] && this.strings[locale][category] && this.strings[locale][category][key]) {
             result = <string>this.strings[locale][category][key];
         }
         
