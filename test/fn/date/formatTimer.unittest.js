@@ -22,11 +22,11 @@ describe('fn/date/formatTimer', function() {
             res = formatTimer(2 * hour + 37 * min + 42 * sec);
             expect(res).to.equal("02:37:42");
 
-            res = formatTimer(37 * min + 42 * sec);
-            expect(res).to.equal("00:37:42");
+            res = formatTimer(37 * min + 42 * sec + 50);
+            expect(res).to.equal("37:42");
 
             res = formatTimer(2 * sec + 50);
-            expect(res).to.equal("00:00:02.050");
+            expect(res).to.equal("02.050");
         });
     });
 });
