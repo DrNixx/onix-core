@@ -23,26 +23,26 @@
   "author": "Nick Panteleeff <drnixx@gmail.com> (https://github.com/DrNixx)",
   "license": "MIT",
   "dependencies": {
-    "intl-messageformat": "^8.3.2",
+    "intl-messageformat": "^9.0.1",
     "lodash-es": "^4.17.15",
     "warning": "^4.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/register": "^7.9.0",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.4",
     "@types/lodash-es": "^4.17.3",
-    "@types/node": "^13.9.8",
+    "@types/node": "^14.0.14",
     "@types/warning": "^3.0.0",
     "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.2",
     "full-icu": "^1.3.1",
-    "mocha": "^7.1.1",
-    "ts-loader": "^6.2.2",
-    "typescript": "^3.7.2",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "mocha": "^8.0.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }

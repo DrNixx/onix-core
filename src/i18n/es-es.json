@@ -1,0 +1,24 @@
+{
+    "core": {
+        "save": "Guardar",
+        "send": "Enviar",
+        "cancel": "Cancelar"
+    },
+    "datetime": {
+        "years": "{y, plural, one{un año} few{# años} many{# años} other{# años}}",
+        "months": "{m, plural, one{un mes} few{# meses} many{# meses} other{# meses}}",
+        "days": "{d, plural, one{un día} few{# días} many{# días} other{# días}}",
+        "hours": "{h, plural, one{una hora} few{# horas} many{# horas} other{# horas}}",
+        "minutes": "{i, plural, one{un minuto} few{# minutos} many{# minutos} other{# minutos}}",
+        "seconds": "{s, plural, one{un segundo} few{# segundos} many{# segundos} other{# segundos}}"
+    },
+    "timer": {
+        "lessone": "menos del 1",
+        "isend": "se acabó",
+        "empty": "---",
+        "days": "{d} d.",
+        "hours": "{h} h.",
+        "minutes": "{i} min.",
+        "seconds": "{s} seg."    
+    }
+}
