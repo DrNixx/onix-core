@@ -1,3 +1,9 @@
+declare global {
+    interface Window {
+        console: Console;
+    }
+}
+
 const wnd: Window = window;
 const FALSE = false;
 
