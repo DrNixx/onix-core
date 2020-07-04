@@ -1,6 +1,7 @@
 import { IntlMessageFormat } from 'intl-messageformat';
 import * as warning from 'warning';
 import * as enTranslation from './i18n/en-us.json';
+import * as esTranslation from './i18n/es-es.json';
 import * as ruTranslation from './i18n/ru-ru.json';
 
 const defaultLocale = "en-us";
@@ -91,6 +92,7 @@ class IntlManager {
     public register = (i18n?: i18n.StringsCategory) => {
         if (!initialized) {
             this.registerCategories("en-us", enTranslation);
+            this.registerCategories("es-es", esTranslation);
             this.registerCategories("ru-ru", ruTranslation);
 
             initialized = true;
