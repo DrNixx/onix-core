@@ -1,11 +1,12 @@
 import { IUserProfile } from './IUserProfile';
 
 export interface IUser {
-    id?: number,
-    username: string,
-    displayName?: string,
-    online?: string,
+    id?: number|string,
+    name: string,
+    display?: string,
+    online?: string|boolean,
     language?: string,
+    patron?: string,
+    status?: string,
     profile?: IUserProfile,
-    patron?: string
 }
