@@ -6,21 +6,21 @@ import { justify } from './Justify';
 export type RadixType = 2 | 8 | 10 | 16;
 
 // formatBaseX()
-const formatBaseX = (value: number, base: RadixType, prefixBaseX: boolean, leftJustify: boolean, minWidth: number, precision: number, zeroPad: boolean) => {
+const formatBaseX = (value: number, base: RadixType, prefixBaseX: boolean, leftJustify: boolean, minWidth: number, precision?: number, zeroPad?: boolean) => {
     // Note: casts negative numbers to positive ones
     const number = value >>> 0;
     const prefix = prefixBaseX && number && {'2': '0b', '8': '0', '10': '', '16': '0x'}[base] || '';
     const result = prefix + padStart(number.toString(base), precision || 0, '0');
-    return justify(result, prefix, leftJustify, minWidth, zeroPad);
+    return justify(result, prefix, leftJustify, minWidth, !!zeroPad);
 }
 
 // formatString()
-const formatString = (value: string, leftJustify: boolean, minWidth: number, precision: number, zeroPad: boolean) => {
-    if (precision != null) {
+const formatString = (value: string, leftJustify: boolean, minWidth: number, precision?: number, zeroPad?: boolean) => {
+    if (precision) {
         value = value.slice(0, precision);
     }
 
-    return justify(value, '', leftJustify, minWidth, zeroPad);
+    return justify(value, '', leftJustify, minWidth, !!zeroPad);
 }
 
 export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted string
@@ -70,21 +70,21 @@ export const sprintf = (format: string, ...a: any[]) => {	// Return a formatted 
 
 
 		if (!precision) {
-			precision = 'fFeE'.indexOf(<string>type) > -1 ? 6 : (type == 'd') ? 0 : void(0);
+			precision = 'fFeE'.indexOf(<string>type) > -1 ? 6 : ((type == 'd') ? 0 : undefined);
 		} else if (typeof precision === "string") {
 			if (precision == '*') {
 				precision = +a[i++];
 			} else if (precision.charAt(0) == '*') {
 				precision = +a[toSafeInteger(precision.slice(1, -1))];
 			}
+
+			precision = toSafeInteger(precision);
 		} else {
-			precision = +precision;
+			precision = toSafeInteger(+precision);
 		}
 
-		precision = toSafeInteger(precision);
-
 		// grab value using valueIndex if required?
-		var value = valueIndex ? a[toSafeInteger(valueIndex.toString().slice(0, -1))] : a[i++];
+		var value = valueIndex ? a[toSafeInteger(valueIndex.toString().slice(0, -1)) - 1] : a[i++];
 
 		switch (type) {
 			case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad);
