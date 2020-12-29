@@ -1,5 +1,5 @@
 import { IntlMessageFormat } from 'intl-messageformat';
-import * as warning from 'warning';
+import warning from 'warning';
 import * as enTranslation from './i18n/en-us.json';
 import * as esTranslation from './i18n/es-es.json';
 import * as ruTranslation from './i18n/ru-ru.json';

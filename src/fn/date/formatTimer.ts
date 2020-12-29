@@ -1,4 +1,4 @@
-import padStart from 'lodash-es/padStart';
+import padStart from 'lodash/padStart';
 import { _ } from '../../i18n';
 import { timestampToInterval  } from './timestampToInterval';
 

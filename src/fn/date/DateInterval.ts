@@ -1,4 +1,4 @@
-import toSafeInteger from 'lodash-es/toSafeInteger';
+import toSafeInteger from 'lodash/toSafeInteger';
 
 export interface DateInterval {
     y: number,

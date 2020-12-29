@@ -1,4 +1,4 @@
-import toSafeInteger from 'lodash-es/toSafeInteger';
+import toSafeInteger from 'lodash/toSafeInteger';
 
 export const parseMicrosoftFormatOffset = (offset: string) => {
     var sign = offset.substr(0, 1) === "-" ? -1 : 1;

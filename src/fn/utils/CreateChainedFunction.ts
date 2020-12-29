@@ -1,4 +1,4 @@
-import isFunction from 'lodash-es/isFunction';
+import isFunction from 'lodash/isFunction';
 
 export const createChainedFunction = (...funcs: any[]) => {
     return funcs

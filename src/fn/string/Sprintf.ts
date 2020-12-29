@@ -1,6 +1,6 @@
-import toSafeInteger from 'lodash-es/toSafeInteger';
-import padStart  from  'lodash-es/padStart';
-import padEnd from 'lodash-es/padEnd';
+import toSafeInteger from 'lodash/toSafeInteger';
+import padStart  from  'lodash/padStart';
+import padEnd from 'lodash/padEnd';
 import { justify } from './Justify';
 
 export type RadixType = 2 | 8 | 10 | 16;
