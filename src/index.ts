@@ -9,6 +9,8 @@ export * from './app/index';
 
 export * from './events/index';
 
+export * from './storage/index';
+
 export { Hashtable } from './Hashtable';
 export { Logger } from './Logger';
 export { _, i18n } from './i18n';
